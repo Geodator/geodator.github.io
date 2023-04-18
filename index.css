@@ -1,0 +1,56 @@
+#map {	
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	cursor: default;
+}
+
+.form-group {
+    margin-bottom: 0.5rem;
+}
+.fa-info-circle {
+    float: right;
+    margin-top: 5px;
+    color: #bfc1c4;
+}
+
+​
+.btn {
+    float: right;
+}
+
+.btn-primary, .btn-primary:hover {
+    color: white !important;
+}
+
+.modal-title{
+	font-weight: 900;
+	font-size: 1.5rem;
+	line-height: 1.5;
+}
+
+.myicon{
+	margin-right: 8px;
+	color: #2960da;
+}
+
+.card{
+	bottom: 0px;
+	height: 30%;
+	width: calc(100% - 18px);
+	margin: .5rem;
+	position: absolute;
+	z-index: 1;
+}
+
+.list-group {
+    overflow: auto;
+}
+.list-group-item {
+	cursor: pointer;
+}
+.list-group-item:hover{
+	background-color: #f0f0f0;
+}
