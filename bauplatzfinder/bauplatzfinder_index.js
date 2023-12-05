@@ -139,7 +139,7 @@ var view_dd = new ol.View({
 
 
 function start(){
-	$.ajax('./data/bebauungsplaene.geojson').then(function(response) {
+	$.ajax('./bauplatzfinder_data/bebauungsplaene.geojson').then(function(response) {
 	  var geojsonFormat = new ol.format.GeoJSON();
 	  var features = geojsonFormat.readFeatures(response,
 		  {featureProjection: 'EPSG:3857'});
@@ -147,7 +147,7 @@ function start(){
 	  source_bpl.addFeatures(features);
 	});
 	
-	$.ajax('./data/bodenrichtwertzonen.geojson').then(function(response) {
+	$.ajax('./bauplatzfinder_data/bodenrichtwertzonen.geojson').then(function(response) {
 	  var geojsonFormat = new ol.format.GeoJSON();
 	  var features = geojsonFormat.readFeatures(response,
 		  {featureProjection: 'EPSG:3857'});
@@ -155,7 +155,7 @@ function start(){
 	  source_brwz.addFeatures(features);
 	});
 	
-	$.ajax('./data/Kindertagesstaetten.geojson').then(function(response) {
+	$.ajax('./bauplatzfinder_data/Kindertagesstaetten.geojson').then(function(response) {
 	  var geojsonFormat = new ol.format.GeoJSON();
 	  var features = geojsonFormat.readFeatures(response,
 		  {featureProjection: 'EPSG:3857'});
@@ -163,7 +163,7 @@ function start(){
 	  source_kts.addFeatures(features);
 	});
 	
-	$.ajax('./data/Bauplaetze.geojson').then(function(response) {
+	$.ajax('./bauplatzfinder_data/Bauplaetze.geojson').then(function(response) {
 	  var geojsonFormat = new ol.format.GeoJSON();
 	  var features = geojsonFormat.readFeatures(response,
 		  {featureProjection: 'EPSG:3857'});
@@ -171,7 +171,7 @@ function start(){
 	  source_bp.addFeatures(features);
 	});
 	
-	$.ajax('./data/Gesundheitseinrichtungen.geojson').then(function(response) {
+	$.ajax('./bauplatzfinder_data/Gesundheitseinrichtungen.geojson').then(function(response) {
 	  var geojsonFormat = new ol.format.GeoJSON();
 	  var features = geojsonFormat.readFeatures(response,
 		  {featureProjection: 'EPSG:3857'});
@@ -179,7 +179,7 @@ function start(){
 	  source_ge.addFeatures(features);
 	});
 	
-	$.ajax('./data/Gruenflaechen.geojson').then(function(response) {
+	$.ajax('./bauplatzfinder_data/Gruenflaechen.geojson').then(function(response) {
 	  var geojsonFormat = new ol.format.GeoJSON();
 	  var features = geojsonFormat.readFeatures(response,
 		  {featureProjection: 'EPSG:3857'});
@@ -187,7 +187,7 @@ function start(){
 	  source_gf.addFeatures(features);
 	});
 	
-	$.ajax('./data/Schulen.geojson').then(function(response) {
+	$.ajax('./bauplatzfinder_data/Schulen.geojson').then(function(response) {
 	  var geojsonFormat = new ol.format.GeoJSON();
 	  var features = geojsonFormat.readFeatures(response,
 		  {featureProjection: 'EPSG:3857'});
@@ -195,7 +195,7 @@ function start(){
 	  source_schule.addFeatures(features);
 	});
 	
-	$.ajax('./data/Spielplaetze.geojson').then(function(response) {
+	$.ajax('./bauplatzfinder_data/Spielplaetze.geojson').then(function(response) {
 	  var geojsonFormat = new ol.format.GeoJSON();
 	  var features = geojsonFormat.readFeatures(response,
 		  {featureProjection: 'EPSG:3857'});
@@ -203,7 +203,7 @@ function start(){
 	  source_sp.addFeatures(features);
 	});
 	
-	$.ajax('./data/Supermaerkte.geojson').then(function(response) {
+	$.ajax('./bauplatzfinder_data/Supermaerkte.geojson').then(function(response) {
 	  var geojsonFormat = new ol.format.GeoJSON();
 	  var features = geojsonFormat.readFeatures(response,
 		  {featureProjection: 'EPSG:3857'});
@@ -211,7 +211,7 @@ function start(){
 	  source_sm.addFeatures(features);
 	});
 	
-	/*$.ajax('./data/Haltestellen.geojson').then(function(response) {
+	/*$.ajax('./bauplatzfinder_data/Haltestellen.geojson').then(function(response) {
 	  var geojsonFormat = new ol.format.GeoJSON();
 	  var features = geojsonFormat.readFeatures(response,
 		  {featureProjection: 'EPSG:3857'});

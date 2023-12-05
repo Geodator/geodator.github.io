@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="minimal-ui, width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	
+    <title>Bauplatzfinder</title>
+	
+    <link rel="stylesheet" href="./lib/bootstrap-4.3.1/css/bootstrap.min.css" type="text/css">
+	<link rel="stylesheet" href="./lib/ol_v4.6.5/ol.css" type="text/css">
+	<!--<link rel="stylesheet" href="./lib/fontawesome.css" type="text/css">-->
+	
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" >
+	
+	<link rel="stylesheet" href="bauplatzfinder_index.css" type="text/css">
+   
+  </head>
+  <body onload="start()">
+  
+	<!-- *** Modal: Wilkommens-Fenster *** -->
+	<div class="modal" id="welcome" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static">
+	  <div class="modal-dialog" role="document">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<h5 class="modal-title">Bauplatzfinder</h5>
+		  </div>
+		  <div class="modal-body">
+			<p>Stellen Sie die Schieberegler entsprechend Ihrer individuellen Bedürfnisse ein und finden Sie den für Sie passendsten Bauplatz zur Verwirklichung Ihrer eigenen Immobilie!</p>
+			
+
+			<div class="form-group">
+				<label for="kosten"><span class= "myicon fas fa-euro-sign"></span> Preis</label>
+				<i class="fas fa-info-circle" data-toggle="tooltip" title="Die Kosten für das Grundstück sind von enormer Bedeutung? Entscheiden Sie, in wie weit sich der Bodenrichtwert (Euro pro Quadratmeter) auf Ihre Suche auswirken soll."></i>
+				<input id="kosten" type="range" class="custom-range" min="0" max="10" step="1">
+			</div>
+
+			<div class="form-group">
+				<label for="customRange1"><span class="myicon fas fa-clinic-medical"></span> Gesundheitseinrichtungen</label>
+				<i class="fas fa-info-circle" data-toggle="tooltip" title="Ob Krankenhaus, Facharzt, Apotheke oder Beratungsstelle. Entscheiden Sie wie wichtig Ihnen die Nähe zu Therapeutischer- und Medizinischer Hilfe ist."></i>
+				<input id="gesundheit" type="range" class="custom-range" min="0" max="10" step="1">
+			</div>
+
+			<div class="form-group">
+				<label for="customRange1"><span class="myicon fas fa-spa"></span> Erholungs- und Grünflächen</label>
+				<i class="fas fa-info-circle" data-toggle="tooltip" title="Die Naherholung liegt Ihnen am Herzen? Entscheiden Sie wie wichtig Ihnen die Nähe zur nächsten Park- bzw. Grünanlage ist."></i>
+				<input id="parks" type="range" class="custom-range" min="0" max="10" step="1">
+			</div>
+
+			<div class="form-group">
+				<label for="customRange1"><span class="myicon fas fa-subway"></span> Anbindung an den ÖPNV</label>
+				<i class="fas fa-info-circle" data-toggle="tooltip" title="Sie benötigen eine Anbindung an den öffentlicher Personennahverkehr mittels Bus, Straßenbahn oder Zug? Entscheiden Sie über die Wichtigkeit der Entfernung zur nächsten Haltestelle."></i>
+				<input id="haltestellen" type="range" class="custom-range" min="0" max="10" step="1">
+			</div>
+
+			<div class="form-group">
+				<label for="customRange1"><span class="myicon fas fa-baby-carriage"></span> Kindertagesstätten</label>
+				<i class="fas fa-info-circle" data-toggle="tooltip" title="Sie erwarten oder haben bereits Nachwuchs und wollen den Weg zum nächsten Tagesbetreuung so gering wie möglich halten? Entscheiden Sie in diesem Slider wie wichtig Ihnen eine nahegelegene Kindertagesstätte ist."></i>
+				<input id="kindergarten" type="range" class="custom-range" min="0" max="10" step="1">
+			</div>
+
+			<div class="form-group">
+				<label for="customRange1"><span class="myicon fas fa-school"></span> Schuleinrichtungen</label>
+				<i class="fas fa-info-circle" data-toggle="tooltip" title="Ihr Kind, Ihre Kinder werden demnächst Eingeschult oder sind bereits in einem schulfähigen Alter? Ob Grundschule, Oberschule oder Gymnasium – entscheiden Sie wie wichtig Ihnen die Nähe zur nächsten Lehranstalt ist."></i>
+				<input id="schulen" type="range" class="custom-range" min="0" max="10" step="1">
+			</div>
+
+			<div class="form-group">
+				<label for="customRange1"><span class="myicon fas fa-shapes"></span> Spielplätze</label>
+				<i class="fas fa-info-circle" data-toggle="tooltip" title="Klettern, Toben und Spielkameraden! Der nächste Spielplatz soll nicht Weit von Ihrem Zuhause entfernt sein? Entscheiden Sie in diesem Slider wie wichtig Ihnen die Nähe ist."></i>
+				<input id="spielplatz" type="range" class="custom-range" min="0" max="10" step="1">
+			</div>
+
+			<div class="form-group">
+				<label for="customRange1"><span class="myicon fas fa-shopping-cart"></span> Einkaufsmöglichkeiten</label>
+				<i class="fas fa-info-circle" data-toggle="tooltip" title="Edeka, Kaufland, Netto und Co., der nächste Lebensmittelmarkt soll nicht weit von Ihrem Zuhause entfernt sein? Unter diesem Slider entscheiden Sie über die Wichtigkeit der Entfernung zur nächsten Einkaufsmöglichkeit." ></i>
+				<input id="lebensmittel" type="range" class="custom-range" min="0" max="10" step="1">
+			</div>
+
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">Abbrechen</button>
+			<button id="btn_start" type="button" class="btn btn-primary" data-dismiss="modal">Bauplatz finden</button>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	  
+    <div id="map" class="map">
+	
+		<div id="card" class="card invisible">
+		  <div class="card-header">Beste Bauplätze</div>
+			 <ul id="bp_ranking" class="list-group list-group-flush"></ul>
+			<a id="btn_tryAgain" class="btn btn-primary">Neue Suche</a>
+		</div>
+	</div>	
+	
+	<script type="text/javascript" src="./lib/jquery-v3.1.1.min.js"></script>
+	<script type="text/javascript" src="./lib/popper.min.js"></script>
+	
+	<!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
+    <script type="text/javascript" src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
+    <script type="text/javascript" src="./lib/ol_v4.6.5/ol-debug.js"></script>
+	<script type="text/javascript" src="./lib/turf/turf-debug.js"></script>	
+		
+	<script type="text/javascript" src="./lib/bootstrap-4.3.1/js/bootstrap.min.js"></script>
+	
+    <script type="text/javascript" src="./bauplatzfinder_index.js"></script>
+	<script type="text/javascript" src="./bauplatzfinder_gui.js"></script>    
+
+  </body>
+</html>

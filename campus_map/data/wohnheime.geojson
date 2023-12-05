@@ -1,0 +1,19 @@
+{
+"type": "FeatureCollection",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+                                                                                
+"features": [
+{ "type": "Feature", "properties": { "osm_id": "97754586",
+	"name": "Wohnheim Hardenbergstraße",
+	"popuptext": "<h2>Wohnheim Hardenbergstraße</h2><img class='popupimg' src='image/wh_hardenbergstr.jpg' width=200px/><p>Das in Nähe des Bauhauses gelegenen Wohnheim bietet den Studierenden Unterkunft in möblierten Einzelapartments und in Einzelzimmern in Wohngemeinschaften. Es ist auf Grund seiner Nähe zum Lehr- und Ver­waltungsbereich der Hochschule sehr beliebt.<br><br><a href='https://www.studentenwerk-halle.de/wohnen/dessau/wh-hardenbergstrasse/'>mehr Informationen</a></p>" },
+	"geometry": { "type": "Polygon", "coordinates": [ [ [ 12.2279686, 51.840091799999989 ], [ 12.228137099999985, 51.8398533 ], [ 12.2279815, 51.8398113 ], [ 12.227813, 51.8400498 ], [ 12.2279686, 51.840091799999989 ] ] ] } },
+{ "type": "Feature", "properties": { "osm_id": "147447452",
+	"name": "Wohnheim Brauereistraße",
+	"popuptext": "<h2>Wohnheim Brauereistraße</h2><img class='popupimg' src='image/wh_brauereistr.jpg' width=200px/><p>Das fünfgeschossige Wohnheim im Dessauer Stadtteil Ziebigk liegt mitten im Grünen und verfügt über Einzel- und Doppelapartments mit Bad und Küche.Fahrradräume, Waschmaschinen- und Trockenraum befinden sich im Keller.<br><br><a href='https://www.studentenwerk-halle.de/wohnen/dessau/wh-brauereistrasse/'>mehr Informationen</a></p>" },
+	"geometry": { "type": "Polygon", "coordinates": [ [ [ 12.219156600000012, 51.834397099999983 ], [ 12.2189674, 51.8344024 ], [ 12.2189238, 51.833823599999981 ], [ 12.219114, 51.8338183 ], [ 12.219156600000012, 51.834397099999983 ] ] ] } },
+{ "type": "Feature", "properties": { "osm_id": "107888350",
+	"name": "Wohnheim Röttgerstraße",
+	"popuptext": "<h2>Wohnheim Röttgerstraße</h2><img class='popupimg' src='image/wh_roettgerstr.jpg' width=200px/><p>Das Grundstück liegt im Stadtteil Ziebigk in unmittelbarer Nähe einer Parkanlage. Die Bewohner schätzen die ruhige und familiäre Atmosphäre des Wohnheimes.<br><br><a href='https://www.studentenwerk-halle.de/wohnen/dessau/wh-roettgerstrasse/'>mehr Informationen</a></p>" },
+	"geometry": { "type": "Polygon", "coordinates": [ [ [ 12.2334519, 51.8434269 ], [ 12.2336557, 51.8435282 ], [ 12.2337855, 51.8434286 ], [ 12.2335818, 51.8433272 ], [ 12.2334519, 51.8434269 ] ] ] } }
+]
+}

@@ -1,112 +1,420 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="minimal-ui, width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	
-    <title>Bauplatzfinder</title>
-	
-    <link rel="stylesheet" href="./lib/bootstrap-4.3.1/css/bootstrap.min.css" type="text/css">
-	<link rel="stylesheet" href="./lib/ol_v4.6.5/ol.css" type="text/css">
-	<!--<link rel="stylesheet" href="./lib/fontawesome.css" type="text/css">-->
-	
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" >
-	
-	<link rel="stylesheet" href="index.css" type="text/css">
-   
-  </head>
-  <body onload="start()">
-  
-	<!-- *** Modal: Wilkommens-Fenster *** -->
-	<div class="modal" id="welcome" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static">
-	  <div class="modal-dialog" role="document">
-		<div class="modal-content">
-		  <div class="modal-header">
-			<h5 class="modal-title">Bauplatzfinder</h5>
-		  </div>
-		  <div class="modal-body">
-			<p>Stellen Sie die Schieberegler entsprechend Ihrer individuellen Bedürfnisse ein und finden Sie den für Sie passendsten Bauplatz zur Verwirklichung Ihrer eigenen Immobilie!</p>
-			
+<html lang="de-DE"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+		<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 
-			<div class="form-group">
-				<label for="kosten"><span class= "myicon fas fa-euro-sign"></span> Preis</label>
-				<i class="fas fa-info-circle" data-toggle="tooltip" title="Die Kosten für das Grundstück sind von enormer Bedeutung? Entscheiden Sie, in wie weit sich der Bodenrichtwert (Euro pro Quadratmeter) auf Ihre Suche auswirken soll."></i>
-				<input id="kosten" type="range" class="custom-range" min="0" max="10" step="1">
+	<title>SR IT-Services - github.io</title>
+	<link rel="canonical" href="https://github.com/Geodator/geodator.github.io">
+
+
+
+<link rel="dns-prefetch" href="https://www.googletagmanager.com/">
+<link rel="dns-prefetch" href="https://fonts.googleapis.com/">
+<link href="https://fonts.gstatic.com/" crossorigin="" rel="preconnect">
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="alternate" type="application/rss+xml" title="SR IT-Services » Feed" href="https://www.sr-it.services/feed/">
+<link rel="alternate" type="application/rss+xml" title="SR IT-Services » Kommentar-Feed" href="https://www.sr-it.services/comments/feed/">
+<link rel="stylesheet" id="wp-block-library-css" href="index-Dateien/style.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="classic-theme-styles-css" href="index-Dateien/classic-themes.min.css" type="text/css" media="all">
+<style id="global-styles-inline-css" type="text/css">
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--color--accent: #339cf8;--wp--preset--color--background-color: #0c2840;--wp--preset--color--header-gradient: #339cf8;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--duotone--dark-grayscale: url('#wp-duotone-dark-grayscale');--wp--preset--duotone--grayscale: url('#wp-duotone-grayscale');--wp--preset--duotone--purple-yellow: url('#wp-duotone-purple-yellow');--wp--preset--duotone--blue-red: url('#wp-duotone-blue-red');--wp--preset--duotone--midnight: url('#wp-duotone-midnight');--wp--preset--duotone--magenta-yellow: url('#wp-duotone-magenta-yellow');--wp--preset--duotone--purple-green: url('#wp-duotone-purple-green');--wp--preset--duotone--blue-orange: url('#wp-duotone-blue-orange');--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}body .is-layout-flow > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-flow > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-flow > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-constrained > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-constrained > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)){max-width: var(--wp--style--global--content-size);margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignwide{max-width: var(--wp--style--global--wide-size);}body .is-layout-flex{display: flex;}body .is-layout-flex{flex-wrap: wrap;align-items: center;}body .is-layout-flex > *{margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+.wp-block-navigation a:where(:not(.wp-element-button)){color: inherit;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}
+.wp-block-pullquote{font-size: 1.5em;line-height: 1.6;}
+</style>
+<link rel="stylesheet" id="hestia-clients-bar-css" href="index-Dateien/clients-bar.css" type="text/css" media="all">
+<link rel="stylesheet" id="bootstrap-css" href="index-Dateien/bootstrap.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="hestia_child_parent-css" href="index-Dateien/style.css" type="text/css" media="all">
+<link rel="stylesheet" id="hestia-font-sizes-css" href="index-Dateien/font-sizes.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="hestia_style-css" href="index-Dateien/style_002.css" type="text/css" media="all">
+<style id="hestia_style-inline-css" type="text/css">
+div.wpforms-container-full .wpforms-form div.wpforms-field input.wpforms-error{border:none}div.wpforms-container .wpforms-form input[type=date],div.wpforms-container .wpforms-form input[type=datetime],div.wpforms-container .wpforms-form input[type=datetime-local],div.wpforms-container .wpforms-form input[type=email],div.wpforms-container .wpforms-form input[type=month],div.wpforms-container .wpforms-form input[type=number],div.wpforms-container .wpforms-form input[type=password],div.wpforms-container .wpforms-form input[type=range],div.wpforms-container .wpforms-form input[type=search],div.wpforms-container .wpforms-form input[type=tel],div.wpforms-container .wpforms-form input[type=text],div.wpforms-container .wpforms-form input[type=time],div.wpforms-container .wpforms-form input[type=url],div.wpforms-container .wpforms-form input[type=week],div.wpforms-container .wpforms-form select,div.wpforms-container .wpforms-form textarea,.nf-form-cont input:not([type=button]),div.wpforms-container .wpforms-form .form-group.is-focused .form-control{box-shadow:none}div.wpforms-container .wpforms-form input[type=date],div.wpforms-container .wpforms-form input[type=datetime],div.wpforms-container .wpforms-form input[type=datetime-local],div.wpforms-container .wpforms-form input[type=email],div.wpforms-container .wpforms-form input[type=month],div.wpforms-container .wpforms-form input[type=number],div.wpforms-container .wpforms-form input[type=password],div.wpforms-container .wpforms-form input[type=range],div.wpforms-container .wpforms-form input[type=search],div.wpforms-container .wpforms-form input[type=tel],div.wpforms-container .wpforms-form input[type=text],div.wpforms-container .wpforms-form input[type=time],div.wpforms-container .wpforms-form input[type=url],div.wpforms-container .wpforms-form input[type=week],div.wpforms-container .wpforms-form select,div.wpforms-container .wpforms-form textarea,.nf-form-cont input:not([type=button]){background-image:linear-gradient(#9c27b0,#9c27b0),linear-gradient(#d2d2d2,#d2d2d2);float:none;border:0;border-radius:0;background-color:transparent;background-repeat:no-repeat;background-position:center bottom,center calc(100% - 1px);background-size:0 2px,100% 1px;font-weight:400;transition:background 0s ease-out}div.wpforms-container .wpforms-form .form-group.is-focused .form-control{outline:none;background-size:100% 2px,100% 1px;transition-duration:0.3s}div.wpforms-container .wpforms-form input[type=date].form-control,div.wpforms-container .wpforms-form input[type=datetime].form-control,div.wpforms-container .wpforms-form input[type=datetime-local].form-control,div.wpforms-container .wpforms-form input[type=email].form-control,div.wpforms-container .wpforms-form input[type=month].form-control,div.wpforms-container .wpforms-form input[type=number].form-control,div.wpforms-container .wpforms-form input[type=password].form-control,div.wpforms-container .wpforms-form input[type=range].form-control,div.wpforms-container .wpforms-form input[type=search].form-control,div.wpforms-container .wpforms-form input[type=tel].form-control,div.wpforms-container .wpforms-form input[type=text].form-control,div.wpforms-container .wpforms-form input[type=time].form-control,div.wpforms-container .wpforms-form input[type=url].form-control,div.wpforms-container .wpforms-form input[type=week].form-control,div.wpforms-container .wpforms-form select.form-control,div.wpforms-container .wpforms-form textarea.form-control{border:none;padding:7px 0;font-size:14px}div.wpforms-container .wpforms-form .wpforms-field-select select{border-radius:3px}div.wpforms-container .wpforms-form .wpforms-field-number input[type=number]{background-image:none;border-radius:3px}div.wpforms-container .wpforms-form button[type=submit].wpforms-submit,div.wpforms-container .wpforms-form button[type=submit].wpforms-submit:hover{color:#fff;border:none}.home div.wpforms-container-full .wpforms-form{margin-left:15px;margin-right:15px}div.wpforms-container-full .wpforms-form .wpforms-field{padding:0 0 24px 0 !important}div.wpforms-container-full .wpforms-form .wpforms-submit-container{text-align:right}div.wpforms-container-full .wpforms-form .wpforms-submit-container button{text-transform:uppercase}div.wpforms-container-full .wpforms-form textarea{border:none !important}div.wpforms-container-full .wpforms-form textarea:focus{border-width:0 !important}.home div.wpforms-container .wpforms-form textarea{background-image:linear-gradient(#9c27b0,#9c27b0),linear-gradient(#d2d2d2,#d2d2d2);background-color:transparent;background-repeat:no-repeat;background-position:center bottom,center calc(100% - 1px);background-size:0 2px,100% 1px}@media only screen and(max-width:768px){.wpforms-container-full .wpforms-form .wpforms-one-half,.wpforms-container-full .wpforms-form button{width:100% !important;margin-left:0 !important}.wpforms-container-full .wpforms-form .wpforms-submit-container{text-align:center}}div.wpforms-container .wpforms-form input:focus,div.wpforms-container .wpforms-form select:focus{border:none}
+.hestia-top-bar,.hestia-top-bar .widget.widget_shopping_cart .cart_list{background-color:#363537}.hestia-top-bar .widget .label-floating input[type=search]:-webkit-autofill{-webkit-box-shadow:inset 0 0 0 9999px #363537}.hestia-top-bar,.hestia-top-bar .widget .label-floating input[type=search],.hestia-top-bar .widget.widget_search form.form-group:before,.hestia-top-bar .widget.widget_product_search form.form-group:before,.hestia-top-bar .widget.widget_shopping_cart:before{color:#fff}.hestia-top-bar .widget .label-floating input[type=search]{-webkit-text-fill-color:#fff !important}.hestia-top-bar div.widget.widget_shopping_cart:before,.hestia-top-bar .widget.widget_product_search form.form-group:before,.hestia-top-bar .widget.widget_search form.form-group:before{background-color:#fff}.hestia-top-bar a,.hestia-top-bar .top-bar-nav li a{color:#fff}.hestia-top-bar ul li a[href*="mailto:"]:before,.hestia-top-bar ul li a[href*="tel:"]:before{background-color:#fff}.hestia-top-bar a:hover,.hestia-top-bar .top-bar-nav li a:hover{color:#eee}.hestia-top-bar ul li:hover a[href*="mailto:"]:before,.hestia-top-bar ul li:hover a[href*="tel:"]:before{background-color:#eee}
+a,.navbar .dropdown-menu li:hover>a,.navbar .dropdown-menu li:focus>a,.navbar .dropdown-menu li:active>a,.navbar .navbar-nav>li .dropdown-menu li:hover>a,body:not(.home) .navbar-default .navbar-nav>.active:not(.btn)>a,body:not(.home) .navbar-default .navbar-nav>.active:not(.btn)>a:hover,body:not(.home) .navbar-default .navbar-nav>.active:not(.btn)>a:focus,a:hover,.card-blog a.moretag:hover,.card-blog a.more-link:hover,.widget a:hover,.has-text-color.has-accent-color,p.has-text-color a{color:#339cf8}.svg-text-color{fill:#339cf8}.pagination span.current,.pagination span.current:focus,.pagination span.current:hover{border-color:#339cf8}button,button:hover,.woocommerce .track_order button[type="submit"],.woocommerce .track_order button[type="submit"]:hover,div.wpforms-container .wpforms-form button[type=submit].wpforms-submit,div.wpforms-container .wpforms-form button[type=submit].wpforms-submit:hover,input[type="button"],input[type="button"]:hover,input[type="submit"],input[type="submit"]:hover,input#searchsubmit,.pagination span.current,.pagination span.current:focus,.pagination span.current:hover,.btn.btn-primary,.btn.btn-primary:link,.btn.btn-primary:hover,.btn.btn-primary:focus,.btn.btn-primary:active,.btn.btn-primary.active,.btn.btn-primary.active:focus,.btn.btn-primary.active:hover,.btn.btn-primary:active:hover,.btn.btn-primary:active:focus,.btn.btn-primary:active:hover,.hestia-sidebar-open.btn.btn-rose,.hestia-sidebar-close.btn.btn-rose,.hestia-sidebar-open.btn.btn-rose:hover,.hestia-sidebar-close.btn.btn-rose:hover,.hestia-sidebar-open.btn.btn-rose:focus,.hestia-sidebar-close.btn.btn-rose:focus,.label.label-primary,.hestia-work .portfolio-item:nth-child(6n+1) .label,.nav-cart .nav-cart-content .widget .buttons .button,.has-accent-background-color[class*="has-background"]{background-color:#339cf8}@media(max-width:768px){.navbar-default .navbar-nav>li>a:hover,.navbar-default .navbar-nav>li>a:focus,.navbar .navbar-nav .dropdown .dropdown-menu li a:hover,.navbar .navbar-nav .dropdown .dropdown-menu li a:focus,.navbar button.navbar-toggle:hover,.navbar .navbar-nav li:hover>a i{color:#339cf8}}body:not(.woocommerce-page) button:not([class^="fl-"]):not(.hestia-scroll-to-top):not(.navbar-toggle):not(.close),body:not(.woocommerce-page) .button:not([class^="fl-"]):not(hestia-scroll-to-top):not(.navbar-toggle):not(.add_to_cart_button):not(.product_type_grouped):not(.product_type_external),div.wpforms-container .wpforms-form button[type=submit].wpforms-submit,input[type="submit"],input[type="button"],.btn.btn-primary,.widget_product_search button[type="submit"],.hestia-sidebar-open.btn.btn-rose,.hestia-sidebar-close.btn.btn-rose,.everest-forms button[type=submit].everest-forms-submit-button{-webkit-box-shadow:0 2px 2px 0 rgba(51,156,248,0.14),0 3px 1px -2px rgba(51,156,248,0.2),0 1px 5px 0 rgba(51,156,248,0.12);box-shadow:0 2px 2px 0 rgba(51,156,248,0.14),0 3px 1px -2px rgba(51,156,248,0.2),0 1px 5px 0 rgba(51,156,248,0.12)}.card .header-primary,.card .content-primary,.everest-forms button[type=submit].everest-forms-submit-button{background:#339cf8}body:not(.woocommerce-page) .button:not([class^="fl-"]):not(.hestia-scroll-to-top):not(.navbar-toggle):not(.add_to_cart_button):hover,body:not(.woocommerce-page) button:not([class^="fl-"]):not(.hestia-scroll-to-top):not(.navbar-toggle):not(.close):hover,div.wpforms-container .wpforms-form button[type=submit].wpforms-submit:hover,input[type="submit"]:hover,input[type="button"]:hover,input#searchsubmit:hover,.widget_product_search button[type="submit"]:hover,.pagination span.current,.btn.btn-primary:hover,.btn.btn-primary:focus,.btn.btn-primary:active,.btn.btn-primary.active,.btn.btn-primary:active:focus,.btn.btn-primary:active:hover,.hestia-sidebar-open.btn.btn-rose:hover,.hestia-sidebar-close.btn.btn-rose:hover,.pagination span.current:hover,.everest-forms button[type=submit].everest-forms-submit-button:hover,.everest-forms button[type=submit].everest-forms-submit-button:focus,.everest-forms button[type=submit].everest-forms-submit-button:active{-webkit-box-shadow:0 14px 26px -12px rgba(51,156,248,0.42),0 4px 23px 0 rgba(0,0,0,0.12),0 8px 10px -5px rgba(51,156,248,0.2);box-shadow:0 14px 26px -12px rgba(51,156,248,0.42),0 4px 23px 0 rgba(0,0,0,0.12),0 8px 10px -5px rgba(51,156,248,0.2);color:#fff}.form-group.is-focused .form-control{background-image:-webkit-gradient(linear,left top,left bottom,from(#339cf8),to(#339cf8)),-webkit-gradient(linear,left top,left bottom,from(#d2d2d2),to(#d2d2d2));background-image:-webkit-linear-gradient(linear,left top,left bottom,from(#339cf8),to(#339cf8)),-webkit-linear-gradient(linear,left top,left bottom,from(#d2d2d2),to(#d2d2d2));background-image:linear-gradient(linear,left top,left bottom,from(#339cf8),to(#339cf8)),linear-gradient(linear,left top,left bottom,from(#d2d2d2),to(#d2d2d2))}.navbar:not(.navbar-transparent) li:not(.btn):hover>a,.navbar li.on-section:not(.btn)>a,.navbar.full-screen-menu.navbar-transparent li:not(.btn):hover>a,.navbar.full-screen-menu .navbar-toggle:hover,.navbar:not(.navbar-transparent) .nav-cart:hover,.navbar:not(.navbar-transparent) .hestia-toggle-search:hover{color:#339cf8}.header-filter-gradient{background:linear-gradient(45deg,rgba(51,156,248,1) 0,rgb(117,184,227) 100%)}.has-text-color.has-header-gradient-color{color:#339cf8}.has-header-gradient-background-color[class*="has-background"]{background-color:#339cf8}.has-text-color.has-background-color-color{color:#0c2840}.has-background-color-background-color[class*="has-background"]{background-color:#0c2840}
+.btn.btn-primary:not(.colored-button):not(.btn-left):not(.btn-right):not(.btn-just-icon):not(.menu-item),input[type="submit"]:not(.search-submit),body:not(.woocommerce-account) .woocommerce .button.woocommerce-Button,.woocommerce .product button.button,.woocommerce .product button.button.alt,.woocommerce .product #respond input#submit,.woocommerce-cart .blog-post .woocommerce .cart-collaterals .cart_totals .checkout-button,.woocommerce-checkout #payment #place_order,.woocommerce-account.woocommerce-page button.button,.woocommerce .track_order button[type="submit"],.nav-cart .nav-cart-content .widget .buttons .button,.woocommerce a.button.wc-backward,body.woocommerce .wccm-catalog-item a.button,body.woocommerce a.wccm-button.button,form.woocommerce-form-coupon button.button,div.wpforms-container .wpforms-form button[type=submit].wpforms-submit,div.woocommerce a.button.alt,div.woocommerce table.my_account_orders .button,.btn.colored-button,.btn.btn-left,.btn.btn-right,.btn:not(.colored-button):not(.btn-left):not(.btn-right):not(.btn-just-icon):not(.menu-item):not(.hestia-sidebar-open):not(.hestia-sidebar-close){padding-top:15px;padding-bottom:15px;padding-left:30px;padding-right:30px}
+.btn.btn-primary:not(.colored-button):not(.btn-left):not(.btn-right):not(.btn-just-icon):not(.menu-item),input[type="submit"]:not(.search-submit),body:not(.woocommerce-account) .woocommerce .button.woocommerce-Button,.woocommerce .product button.button,.woocommerce .product button.button.alt,.woocommerce .product #respond input#submit,.woocommerce-cart .blog-post .woocommerce .cart-collaterals .cart_totals .checkout-button,.woocommerce-checkout #payment #place_order,.woocommerce-account.woocommerce-page button.button,.woocommerce .track_order button[type="submit"],.nav-cart .nav-cart-content .widget .buttons .button,.woocommerce a.button.wc-backward,body.woocommerce .wccm-catalog-item a.button,body.woocommerce a.wccm-button.button,form.woocommerce-form-coupon button.button,div.wpforms-container .wpforms-form button[type=submit].wpforms-submit,div.woocommerce a.button.alt,div.woocommerce table.my_account_orders .button,input[type="submit"].search-submit,.hestia-view-cart-wrapper .added_to_cart.wc-forward,.woocommerce-product-search button,.woocommerce-cart .actions .button,#secondary div[id^=woocommerce_price_filter] .button,.woocommerce div[id^=woocommerce_widget_cart].widget .buttons .button,.searchform input[type=submit],.searchform button,.search-form:not(.media-toolbar-primary) input[type=submit],.search-form:not(.media-toolbar-primary) button,.woocommerce-product-search input[type=submit],.btn.colored-button,.btn.btn-left,.btn.btn-right,.btn:not(.colored-button):not(.btn-left):not(.btn-right):not(.btn-just-icon):not(.menu-item):not(.hestia-sidebar-open):not(.hestia-sidebar-close){border-radius:3px}
+h1,h2,h3,h4,h5,h6,.hestia-title,.hestia-title.title-in-content,p.meta-in-content,.info-title,.card-title,.page-header.header-small .hestia-title,.page-header.header-small .title,.widget h5,.hestia-title,.title,.footer-brand,.footer-big h4,.footer-big h5,.media .media-heading,.carousel h1.hestia-title,.carousel h2.title,.carousel span.sub-title,.hestia-about h1,.hestia-about h2,.hestia-about h3,.hestia-about h4,.hestia-about h5{font-family:Nunito}body,ul,.tooltip-inner{font-family:Nunito}
+@media(min-width:769px){.page-header.header-small .hestia-title,.page-header.header-small .title,h1.hestia-title.title-in-content,.main article.section .has-title-font-size{font-size:42px}}
+</style>
+<link rel="preload" as="style" href="index-Dateien/css.css"><link rel="stylesheet" id="hestia-google-font-nunito-css" href="index-Dateien/css.css" type="text/css" media="all" onload='this.media="all"'>
+<script type="text/javascript" src="index-Dateien/jquery.min.js" id="jquery-core-js"></script>
+<script type="text/javascript" src="index-Dateien/jquery-migrate.min.js" id="jquery-migrate-js"></script>
+
+
+<link rel="https://api.w.org/" href="https://www.sr-it.services/wp-json/"><link rel="alternate" type="application/json" href="https://www.sr-it.services/wp-json/wp/v2/posts/35"><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.sr-it.services/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://www.sr-it.services/wp-includes/wlwmanifest.xml">
+<meta name="generator" content="WordPress 6.2">
+<link rel="shortlink" href="https://www.sr-it.services/?p=35">
+<link rel="alternate" type="application/json+oembed" href="https://www.sr-it.services/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.sr-it.services%2Fbauleitplanung-online%2F">
+<link rel="alternate" type="text/xml+oembed" href="https://www.sr-it.services/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.sr-it.services%2Fbauleitplanung-online%2F&amp;format=xml">
+<meta name="generator" content="Site Kit by Google 1.115.0"><style type="text/css" id="custom-background-css">
+body.custom-background { background-color: #0c2840; background-image: url("https://www.sr-it.services/wp-content/uploads/sr-it_background-scaled.webp"); background-position: center center; background-size: cover; background-repeat: no-repeat; background-attachment: fixed; }
+</style>
+	<link rel="icon" href="https://www.sr-it.services/wp-content/uploads/logo-150x150.png" sizes="32x32">
+<link rel="icon" href="index-Dateien/logo.png" sizes="192x192">
+<link rel="apple-touch-icon" href="index-Dateien/logo.png">
+<meta name="msapplication-TileImage" content="https://www.sr-it.services/wp-content/uploads/logo.png">
+		<style type="text/css" id="wp-custom-css">
+			/* dunkelblau: #0c2840 */
+/* Button-Blau:	#339cf8 */
+
+/* Kopfmenü in Dunkelblau *
+.hestia-top-bar, .hestia-top-bar .widget.widget_shopping_cart .cart_list {
+  background-color: #0c2840;
+}*/
+
+/* Fußmenü in Dunkelblau */
+/*footer.footer.footer-black {
+  background: #0c2840;
+}*/
+
+/* kreisrundes Team-Bild */
+.hestia-team-content .card-image{
+	border-radius: 50% !important;
+}
+
+/* Header-Hintergrundbild in blau*/
+.header-filter-gradient {
+  background: linear-gradient(0deg,rgb(12, 40, 64) 0,rgb(43, 170, 248) 100%);
+}
+
+/* Hintergrundbild 100% Höhe */
+.page-header {
+	min-height: 100vh !important;
+}
+.page-header.header-small {
+  min-height: 300px !important;
+}
+
+/* Darstellung für particles.js */
+.carousel .header-filter{
+	background-image: unset !important;
+}/*
+.header-filter::before {
+  background-color: rgba(0,0,0,0) !important;
+}
+.header-filter::after {
+  background-color: rgba(0,0,0,.5);
+}*/
+#particles-js {
+	position: fixed;
+	left: -50px;
+	bottom: -50px;
+	right: -50px;
+	top: -50px;
+	/*height: 100%;
+	width: 100%;*/
+ 	z-index: -1;
+}
+
+/* Kontakt-Hintergrund fixed */
+.hestia-contact {
+  background-attachment: fixed;
+}
+.page-header {
+  background-attachment: fixed;
+}
+
+/* Hintergrund für Verwandte Beiträge */
+.related-posts{
+	background-color: #0c2840;
+}
+.related-posts h2{
+	color: white;
+}
+
+/* Farbanpassung Kontaktformular */
+div.wpforms-container .wpforms-form input[type="text"], div.wpforms-container .wpforms-form input[type="email"], .home div.wpforms-container .wpforms-form textarea {
+  background-image: linear-gradient(#339cf8,#339cf8),linear-gradient(#d2d2d2,#d2d2d2);
+}
+
+/* Farbanpassung Scroll-Top-Button */
+.hestia-scroll-to-top, .hestia-scroll-to-top:hover, .hestia-scroll-to-top:focus{
+	background-color: #339cf8;
+}
+
+
+/* Hestia-Reiehenfolge ändern */
+/* Sections have the following IDs:
+    clients_bar
+    features
+    portfolio
+    pricing
+    ribbon
+    team
+    testimonial
+    about
+    blog
+    contact
+    shop
+    subscribe
+*/
+.home .main #team {
+   grid-row: 2
+}
+.home .main #blog {
+   grid-row: 3
+}
+
+/*Hestia-Sections Padding anpassen*/
+.team, .hestia-team {
+  padding: 40px 0 20px;
+}
+		</style>
+		<meta http-equiv="origin-trial" content="AymqwRC7u88Y4JPvfIF2F37QKylC04248hLCdJAsh8xgOfe/dVJPV3XS3wLFca1ZMVOtnBfVjaCMTVudWM//5g4AAAB7eyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGV0YWdtYW5hZ2VyLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjk1MTY3OTk5LCJpc1RoaXJkUGFydHkiOnRydWV9"></head>
+
+<body class="post-template-default single single-post postid-35 single-format-standard custom-background wp-custom-logo blog-post header-layout-no-content"><div id="particles-js"><canvas class="particles-js-canvas-el" style="width: 100%; height: 100%;" width="2003" height="1055"></canvas></div>
+	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-dark-grayscale"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></feColorMatrix><feComponentTransfer color-interpolation-filters="sRGB"><feFuncR type="table" tableValues="0 0.49803921568627"></feFuncR><feFuncG type="table" tableValues="0 0.49803921568627"></feFuncG><feFuncB type="table" tableValues="0 0.49803921568627"></feFuncB><feFuncA type="table" tableValues="1 1"></feFuncA></feComponentTransfer><feComposite in2="SourceGraphic" operator="in"></feComposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-grayscale"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></feColorMatrix><feComponentTransfer color-interpolation-filters="sRGB"><feFuncR type="table" tableValues="0 1"></feFuncR><feFuncG type="table" tableValues="0 1"></feFuncG><feFuncB type="table" tableValues="0 1"></feFuncB><feFuncA type="table" tableValues="1 1"></feFuncA></feComponentTransfer><feComposite in2="SourceGraphic" operator="in"></feComposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-purple-yellow"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></feColorMatrix><feComponentTransfer color-interpolation-filters="sRGB"><feFuncR type="table" tableValues="0.54901960784314 0.98823529411765"></feFuncR><feFuncG type="table" tableValues="0 1"></feFuncG><feFuncB type="table" tableValues="0.71764705882353 0.25490196078431"></feFuncB><feFuncA type="table" tableValues="1 1"></feFuncA></feComponentTransfer><feComposite in2="SourceGraphic" operator="in"></feComposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-blue-red"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></feColorMatrix><feComponentTransfer color-interpolation-filters="sRGB"><feFuncR type="table" tableValues="0 1"></feFuncR><feFuncG type="table" tableValues="0 0.27843137254902"></feFuncG><feFuncB type="table" tableValues="0.5921568627451 0.27843137254902"></feFuncB><feFuncA type="table" tableValues="1 1"></feFuncA></feComponentTransfer><feComposite in2="SourceGraphic" operator="in"></feComposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-midnight"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></feColorMatrix><feComponentTransfer color-interpolation-filters="sRGB"><feFuncR type="table" tableValues="0 0"></feFuncR><feFuncG type="table" tableValues="0 0.64705882352941"></feFuncG><feFuncB type="table" tableValues="0 1"></feFuncB><feFuncA type="table" tableValues="1 1"></feFuncA></feComponentTransfer><feComposite in2="SourceGraphic" operator="in"></feComposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-magenta-yellow"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></feColorMatrix><feComponentTransfer color-interpolation-filters="sRGB"><feFuncR type="table" tableValues="0.78039215686275 1"></feFuncR><feFuncG type="table" tableValues="0 0.94901960784314"></feFuncG><feFuncB type="table" tableValues="0.35294117647059 0.47058823529412"></feFuncB><feFuncA type="table" tableValues="1 1"></feFuncA></feComponentTransfer><feComposite in2="SourceGraphic" operator="in"></feComposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-purple-green"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></feColorMatrix><feComponentTransfer color-interpolation-filters="sRGB"><feFuncR type="table" tableValues="0.65098039215686 0.40392156862745"></feFuncR><feFuncG type="table" tableValues="0 1"></feFuncG><feFuncB type="table" tableValues="0.44705882352941 0.4"></feFuncB><feFuncA type="table" tableValues="1 1"></feFuncA></feComponentTransfer><feComposite in2="SourceGraphic" operator="in"></feComposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-blue-orange"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></feColorMatrix><feComponentTransfer color-interpolation-filters="sRGB"><feFuncR type="table" tableValues="0.098039215686275 1"></feFuncR><feFuncG type="table" tableValues="0 0.66274509803922"></feFuncG><feFuncB type="table" tableValues="0.84705882352941 0.41960784313725"></feFuncB><feFuncA type="table" tableValues="1 1"></feFuncA></feComponentTransfer><feComposite in2="SourceGraphic" operator="in"></feComposite></filter></defs></svg>	<div class="wrapper post-35 post type-post status-publish format-standard has-post-thumbnail hentry category-webmapping no-content ">
+		<header class="header ">
+			<div style="display: none"></div>		<nav class="navbar navbar-default navbar-fixed-top hestia_left navbar-not-transparent navbar-scroll-point">
+						<div class="container">
+						<div class="navbar-header">
+			<div class="title-logo-wrapper">
+				<a class="navbar-brand" href="https://www.sr-it.services/" title="SR IT-Services">
+					<img class="hestia-hide-if-transparent" src="index-Dateien/logo.png" alt="SR IT-Services" width="200" height="153"><img class="hestia-transparent-logo" src="index-Dateien/logo.png" alt="SR IT-Services" width="200" height="153"></a>
 			</div>
+								<div class="navbar-toggle-wrapper">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navigation">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="sr-only">Navigation umschalten</span>
+			</button>
+					</div>
+				</div>
+		<div id="main-navigation" class="collapse navbar-collapse"><ul id="menu-hauptmenue" class="nav navbar-nav"><li id="menu-item-116" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-116"><a title="Leistungen" href="https://www.sr-it.services/#features">Leistungen</a></li>
+<li id="menu-item-117" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-117"><a title="Team" href="https://www.sr-it.services/#team">Team</a></li>
+<li id="menu-item-278" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home current-menu-ancestor current-menu-parent menu-item-has-children menu-item-278 dropdown"><a title="Projekte" href="https://www.sr-it.services/#blog" class="dropdown-toggle">Projekte <span class="caret-wrap"><span class="caret"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-down" class="svg-inline--fa fa-chevron-down fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z"></path></svg></span></span></a>
+<ul role="menu" class="dropdown-menu">
+	<li id="menu-item-299" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-299"><a title="Allevo Maps" href="https://www.sr-it.services/allevo-maps/">Allevo Maps</a></li>
+	<li id="menu-item-298" class="menu-item menu-item-type-post_type menu-item-object-post current-menu-item menu-item-298 active"><a title="Bauleitplanung online" href="https://www.sr-it.services/bauleitplanung-online/">Bauleitplanung online</a></li>
+	<li id="menu-item-591" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-591"><a title="Projekte auf GitHub" href="https://geodator.github.io/">Projekte auf GitHub</a></li>
+</ul>
+</li>
+<li id="menu-item-119" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-119"><a title="Kontakt" href="https://www.sr-it.services/#contact">Kontakt</a></li>
+</ul></div>			</div>
+					</nav>
+				</header>
+<div id="primary" class=" page-header header-small" data-parallax="active" style="min-height: 300px; transform: translate3d(0px, 143px, 0px);"><div class="header-filter" style="background-image: url(https://www.sr-it.services/wp-content/uploads/sr-it_project_bpl-online.png);"></div></div>
+<div class="main ">
+	<div class="blog-post blog-post-wrapper">
+		<div class="container">
+			<article id="post-35" class="section section-text">
+	<div class="row">
+				<div class="col-md-8 single-post-container col-md-offset-2" data-layout="full-width">
 
-			<div class="form-group">
-				<label for="customRange1"><span class="myicon fas fa-clinic-medical"></span> Gesundheitseinrichtungen</label>
-				<i class="fas fa-info-circle" data-toggle="tooltip" title="Ob Krankenhaus, Facharzt, Apotheke oder Beratungsstelle. Entscheiden Sie wie wichtig Ihnen die Nähe zu Therapeutischer- und Medizinischer Hilfe ist."></i>
-				<input id="gesundheit" type="range" class="custom-range" min="0" max="10" step="1">
-			</div>
+			<div class="single-post-wrap entry-content">	<div class="row"><div class="col-md-12"><h1 class="hestia-title title-in-content entry-title">Meine Projekte auf GitHub</h1></div></div>
 
-			<div class="form-group">
-				<label for="customRange1"><span class="myicon fas fa-spa"></span> Erholungs- und Grünflächen</label>
-				<i class="fas fa-info-circle" data-toggle="tooltip" title="Die Naherholung liegt Ihnen am Herzen? Entscheiden Sie wie wichtig Ihnen die Nähe zur nächsten Park- bzw. Grünanlage ist."></i>
-				<input id="parks" type="range" class="custom-range" min="0" max="10" step="1">
-			</div>
 
-			<div class="form-group">
-				<label for="customRange1"><span class="myicon fas fa-subway"></span> Anbindung an den ÖPNV</label>
-				<i class="fas fa-info-circle" data-toggle="tooltip" title="Sie benötigen eine Anbindung an den öffentlicher Personennahverkehr mittels Bus, Straßenbahn oder Zug? Entscheiden Sie über die Wichtigkeit der Entfernung zur nächsten Haltestelle."></i>
-				<input id="haltestellen" type="range" class="custom-range" min="0" max="10" step="1">
-			</div>
 
-			<div class="form-group">
-				<label for="customRange1"><span class="myicon fas fa-baby-carriage"></span> Kindertagesstätten</label>
-				<i class="fas fa-info-circle" data-toggle="tooltip" title="Sie erwarten oder haben bereits Nachwuchs und wollen den Weg zum nächsten Tagesbetreuung so gering wie möglich halten? Entscheiden Sie in diesem Slider wie wichtig Ihnen eine nahegelegene Kindertagesstätte ist."></i>
-				<input id="kindergarten" type="range" class="custom-range" min="0" max="10" step="1">
-			</div>
 
-			<div class="form-group">
-				<label for="customRange1"><span class="myicon fas fa-school"></span> Schuleinrichtungen</label>
-				<i class="fas fa-info-circle" data-toggle="tooltip" title="Ihr Kind, Ihre Kinder werden demnächst Eingeschult oder sind bereits in einem schulfähigen Alter? Ob Grundschule, Oberschule oder Gymnasium – entscheiden Sie wie wichtig Ihnen die Nähe zur nächsten Lehranstalt ist."></i>
-				<input id="schulen" type="range" class="custom-range" min="0" max="10" step="1">
-			</div>
 
-			<div class="form-group">
-				<label for="customRange1"><span class="myicon fas fa-shapes"></span> Spielplätze</label>
-				<i class="fas fa-info-circle" data-toggle="tooltip" title="Klettern, Toben und Spielkameraden! Der nächste Spielplatz soll nicht Weit von Ihrem Zuhause entfernt sein? Entscheiden Sie in diesem Slider wie wichtig Ihnen die Nähe ist."></i>
-				<input id="spielplatz" type="range" class="custom-range" min="0" max="10" step="1">
-			</div>
+<iframe marginwidth="0" marginheight="0" scrolling="no" allowfullscreen="true" src="./campus_map/index.html" width="100%;" height="500px;" frameborder="0">
+</iframe>
 
-			<div class="form-group">
-				<label for="customRange1"><span class="myicon fas fa-shopping-cart"></span> Einkaufsmöglichkeiten</label>
-				<i class="fas fa-info-circle" data-toggle="tooltip" title="Edeka, Kaufland, Netto und Co., der nächste Lebensmittelmarkt soll nicht weit von Ihrem Zuhause entfernt sein? Unter diesem Slider entscheiden Sie über die Wichtigkeit der Entfernung zur nächsten Einkaufsmöglichkeit." ></i>
-				<input id="lebensmittel" type="range" class="custom-range" min="0" max="10" step="1">
-			</div>
+<p>Meine github.io-Seite</p>
 
-		  </div>
-		  <div class="modal-footer">
-			<button type="button" class="btn btn-secondary" data-dismiss="modal">Abbrechen</button>
-			<button id="btn_start" type="button" class="btn btn-primary" data-dismiss="modal">Bauplatz finden</button>
-		  </div>
+
+<iframe marginwidth="0" marginheight="0" scrolling="no" allowfullscreen="true" src="./bauplatzfinder/bauplatzfinder_index.html" width="100%;" height="500px;" frameborder="0">
+</iframe>
+
+</div>
+		<div class="section section-blog-info">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="entry-categories">Kategorien:						<span class="label label-primary"><a href="https://www.sr-it.services/category/webmapping/">WebMapping</a></span>					</div>
+									</div>
+				
+        <div class="col-md-6">
+            <div class="entry-social">
+                <a target="_blank" rel="tooltip" data-original-title="Auf Facebook teilen" class="btn btn-just-icon btn-round btn-facebook" href="https://www.facebook.com/sharer.php?u=https://www.sr-it.services/bauleitplanung-online/">
+                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="20" height="17"><path fill="currentColor" d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"></path></svg>
+                </a>
+                
+                <a target="_blank" rel="tooltip" data-original-title="Auf Twitter teilen" class="btn btn-just-icon btn-round btn-twitter" href="http://twitter.com/share?url=https://www.sr-it.services/bauleitplanung-online/&amp;text=Bauleitplanung%20online">
+                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20" height="17"><path fill="currentColor" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path></svg>
+                </a>
+                
+                <a rel="tooltip" data-original-title=" Per E-Mail teilen" class="btn btn-just-icon btn-round" href="mailto:?subject=Bauleitplanung%20online&amp;body=https://www.sr-it.services/bauleitplanung-online/">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20" height="17"><path fill="currentColor" d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"></path></svg>
+               </a>
+            </div>
+		</div>			</div>
+			<hr>
+					</div>
+		</div>		</div>
+</article>
+
 		</div>
-	  </div>
 	</div>
-	  
-    <div id="map" class="map">
-	
-		<div id="card" class="card invisible">
-		  <div class="card-header">Beste Bauplätze</div>
-			 <ul id="bp_ranking" class="list-group list-group-flush"></ul>
-			<a id="btn_tryAgain" class="btn btn-primary">Neue Suche</a>
-		</div>
-	</div>	
-	
-	<script type="text/javascript" src="./lib/jquery-v3.1.1.min.js"></script>
-	<script type="text/javascript" src="./lib/popper.min.js"></script>
-	
-	<!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
-    <script type="text/javascript" src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
-    <script type="text/javascript" src="./lib/ol_v4.6.5/ol-debug.js"></script>
-	<script type="text/javascript" src="./lib/turf/turf-debug.js"></script>	
-		
-	<script type="text/javascript" src="./lib/bootstrap-4.3.1/js/bootstrap.min.js"></script>
-	
-    <script type="text/javascript" src="./index.js"></script>
-	<script type="text/javascript" src="./gui.js"></script>    
+</div>
 
-  </body>
-</html>
+			<div class="section related-posts">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<h2 class="hestia-title text-center">Verwandte Beiträge</h2>
+							<div class="row">
+																	<div class="col-md-4">
+										<div class="card card-blog">
+																							<div class="card-image">
+													<a href="https://www.sr-it.services/allevo-maps/" title="Allevo Maps">
+														<img width="360" height="240" src="index-Dateien/sr-it_project_allevo-maps-360x240.webp" class="attachment-hestia-blog size-hestia-blog wp-post-image" alt="" decoding="async" loading="lazy" srcset="index-Dateien/sr-it_project_allevo-maps-360x240.webp 360w, index-Dateien/sr-it_project_allevo-maps-300x200.webp 300w, index-Dateien/sr-it_project_allevo-maps-1024x683.webp 1024w, index-Dateien/sr-it_project_allevo-maps-768x512.webp 768w, index-Dateien/sr-it_project_allevo-maps-1536x1024.webp 1536w, index-Dateien/sr-it_project_allevo-maps-2048x1365.webp 2048w" sizes="(max-width: 360px) 100vw, 360px">													</a>
+												</div>
+																						<div class="content">
+												<h6 class="category text-info"><a href="https://www.sr-it.services/category/webmapping/" title="Alle Beiträge in WebMapping ansehen">WebMapping</a> </h6>
+												<h4 class="card-title">
+													<a class="blog-item-title-link" href="https://www.sr-it.services/allevo-maps/" title="Allevo Maps" rel="bookmark">
+														Allevo Maps													</a>
+												</h4>
+												<p class="card-description">* Entwickelt in Kooperation mit 
+der Allevo Kommunalberatung GmbH Die Entwicklung von Allevo Maps begann 
+im Jahr 2017, im Zuge meiner Bachelorarbeit. Das damalige Konzept sah 
+vor, Geodaten der Allevo Kommunalberatung GmbH als Web Map<a class="moretag" href="https://www.sr-it.services/allevo-maps/"> Weiterlesen…</a></p>
+											</div>
+										</div>
+									</div>
+																							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="footer-wrapper">
+						<footer class="footer footer-black footer-big">
+						<div class="container">
+																<div class="hestia-bottom-footer-content"><ul id="menu-footer-menue" class="footer-menu pull-left"><li id="menu-item-126" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-126"><a href="https://www.sr-it.services/impressum">Impressum</a></li>
+<li id="menu-item-127" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-127"><a href="https://www.sr-it.services/datenschutz">Datenschutz</a></li>
+</ul><div class="copyright pull-right">© Sven Röder IT-Services | 2023</div></div>			</div>
+					</footer>
+				</div>
+	</div>
+<script src="index-Dateien/particles.min.js"></script>
+<script type="text/javascript">
+var div= document.createElement("div");  
+div.setAttribute("id", "particles-js");
+//var body = document.querySelector(".header-filter");
+var body = document.querySelector("body");
+body.insertBefore(div, body.firstChild);
+particlesJS('particles-js', {
+                "particles": {
+                    "number": {
+                        "value": 80,
+                        "density": {
+                            "enable": true,
+                            "value_area": 1000
+                        }
+                    },
+                    "color": {
+                        "value": "#fff"
+                    },
+                    "shape": {
+                        "type": "circle",
+                        "stroke": {
+                            "width": 0,
+                            "color": "#fff"
+                        },
+                        "polygon": {
+                            "nb_sides": 5
+                        }
+                    },
+                    "opacity": {
+                        "value": 1,
+                        "random": false
+                    },
+                    "size": {
+                        "value": 4,
+                        "random": true
+                    },
+                    "line_linked": {
+                        "enable": true,
+                        "distance": 250,
+                        "color": "#fff",
+                        "opacity": 0.85,
+                        "width": 1
+                    },
+                    "move": {
+                        "enable": true,
+                        "speed": 4,
+                        "direction": "none",
+                        "random": false,
+                        "straight": false,
+                        "out_mode": "out",
+                        "bounce": false,
+                        "attract": {
+                            "enable": false,
+                            "rotateX": 600,
+                            "rotateY": 1200
+                        }
+                    }
+                },
+                "interactivity": {
+                    "detect_on": "window",
+                    "events": {
+                        "onhover": {
+                            "enable": true,
+                            "mode": "repulse"
+                        },
+                        "onclick": {
+                            "enable": true,
+                            "mode": "push"
+                        },
+                        "resize": true
+                    },
+                    "modes": {
+                        "grab": {
+                            "distance": 500,
+                            "line_linked": {
+                                "opacity": 1
+                            }
+                        },
+                        "bubble": {
+                            "distance": 500,
+                            "size": 80,
+                            "duration": 2,
+                            "opacity": 0.8,
+                            "speed": 3
+                        },
+                        "repulse": {
+                            "distance": 100,
+                            "duration": 0.4
+                        },
+                        "push": {
+                            "particles_nb": 4
+                        },
+                        "remove": {
+                            "particles_nb": 2
+                        }
+                    }
+                },
+                "retina_detect": true
+            });
+</script>
+
+<script type="text/javascript">
+var d = new Date();
+var year = d.getFullYear();
+var txt = '© Sven Röder IT-Services | '+year;
+x=document.getElementsByClassName("copyright"); 
+// Find the elements
+for(var i = 0; i < x.length; i++){
+    x[i].innerText=txt;
+ }
+</script>
+		<button class="hestia-scroll-to-top hestia-fade">
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="12.5px" height="20px"><path d="M177 255.7l136 136c9.4 9.4 9.4 24.6 0 33.9l-22.6 22.6c-9.4 9.4-24.6 9.4-33.9 0L160 351.9l-96.4 96.4c-9.4 9.4-24.6 9.4-33.9 0L7 425.7c-9.4-9.4-9.4-24.6 0-33.9l136-136c9.4-9.5 24.6-9.5 34-.1zm-34-192L7 199.7c-9.4 9.4-9.4 24.6 0 33.9l22.6 22.6c9.4 9.4 24.6 9.4 33.9 0l96.4-96.4 96.4 96.4c9.4 9.4 24.6 9.4 33.9 0l22.6-22.6c9.4-9.4 9.4-24.6 0-33.9l-136-136c-9.2-9.4-24.4-9.4-33.8 0z"></path></svg>
+		</button>
+		<script type="text/javascript" src="index-Dateien/comment-reply.min.js" id="comment-reply-js"></script>
+<script type="text/javascript" src="index-Dateien/bootstrap.min.js" id="jquery-bootstrap-js"></script>
+<script type="text/javascript" src="index-Dateien/core.min.js" id="jquery-ui-core-js"></script>
+<script type="text/javascript" id="hestia_scripts-js-extra">
+/* <![CDATA[ */
+var requestpost = {"ajaxurl":"https:\/\/www.sr-it.services\/wp-admin\/admin-ajax.php","disable_autoslide":"","masonry":""};
+/* ]]> */
+</script>
+<script type="text/javascript" src="index-Dateien/script.min.js" id="hestia_scripts-js"></script>
+
+
+</body></html>
